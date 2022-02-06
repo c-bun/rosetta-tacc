@@ -4,6 +4,42 @@ import pandas as pd
 import numpy as np
 import plotnine as pn
 
+def plot_scan(data):
+    """
+    Assumes that you have cleaned and added aa class.
+    """
+    (
+    pn.ggplot(data, pn.aes('position', 'I_sc', color='aa class'))
+    + pn.geom_point()
+    )
+
+AA_CLASS = {
+    'GLY':'nonpolar',
+    'ALA':'nonpolar',
+    'VAL':'nonpolar',
+    'LEU':'nonpolar',
+    'ILE':'nonpolar',
+    'MET':'nonpolar',
+    'PRO':'nonpolar',
+    'PHE':'nonpolar',
+    'TRP':'nonpolar',
+    'SER':'polar',
+    'THR':'polar',
+    'TYR':'polar',
+    'CYS':'polar',
+    'ASN':'polar',
+    'GLN':'polar',
+    'ASP':'acidic',
+    'GLU':'acidic',
+    'LYS':'basic',
+    'HIS':'basic',
+    'ARG':'basic',
+}
+
+def assign_class(data):
+    data['aa class'] = data['AA'].apply(lambda x: AA_CLASS[x])
+    return data
+
 LBIT_SEQUENCE = "VFTLEDFVGDWEQTAAYNLDQVLEQGGVSSLLQNLAVSVTPIQRIVRSGENALKIDIHVIIPYEGLSADQMAQIEEVFKVVYPVDDHHFKVILPYGTLVIDGVTPNMLNYFGRPYEGIAVFDGKKITVTGTLWNGNKIIDERLITPDGSMLFRVTINS"
 
 def res_LBit(n):
@@ -13,6 +49,7 @@ def add_labels(data):
     data['position'] = data['decoy'].apply(lambda x: int(x.split('_')[0][1:]))
     data['mutcode'] = data['decoy'].apply(lambda x: x.split('_')[0][1:]+x.split('_')[1][:3])
     data['AA'] = data['decoy'].apply(lambda x: x.split('_')[1][:3])
+    assign_class(data)
     return data
 
 def parseSmBits(date_time):
