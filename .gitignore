@@ -1,3 +1,4 @@
 *.pyc
 *.sc
 *.pdb
+.DS_Store
