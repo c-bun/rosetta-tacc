@@ -36,6 +36,29 @@ AA_CLASS = {
     'ARG':'basic',
 }
 
+AA_CODE = {
+    'GLY':'G',
+    'ALA':'A',
+    'VAL':'V',
+    'LEU':'L',
+    'ILE':'I',
+    'MET':'M',
+    'PRO':'P',
+    'PHE':'F',
+    'TRP':'W',
+    'SER':'S',
+    'THR':'T',
+    'TYR':'Y',
+    'CYS':'C',
+    'ASN':'N',
+    'GLN':'Q',
+    'ASP':'D',
+    'GLU':'E',
+    'LYS':'K',
+    'HIS':'H',
+    'ARG':'R',
+}
+
 def assign_class(data):
     data['aa class'] = data['AA'].apply(lambda x: AA_CLASS[x])
     return data
