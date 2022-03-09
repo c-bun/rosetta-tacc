@@ -2,3 +2,8 @@
 *.sc
 *.pdb
 .DS_Store
+*.job
+*.sh
+*.xml
+*.err
+*.out
